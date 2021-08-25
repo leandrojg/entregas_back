@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+
+.barra{
+    width: 20em;
+    height: 1em;
+    border: 1px solid
+}
+
+.indicador{
+    width: 0;
+    height: 100%;
+    background-color: red;
+}
