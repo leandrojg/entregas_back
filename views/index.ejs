@@ -9,53 +9,62 @@
 
 </head>
 <body>
+    <!-- FORMULARIO MOSTRAR PRODUCTOS -->
     <% if (status) { %>
-    <h1><%= mensaje%></h1>
-    <%} else { %>
-    <h1> No existe el mensaje </h1> 
-    <% } %>
+        <h1><%= mensaje %></h1>
+        <% } else { %>
+        <h1> No existe el mensaje </h1> 
+        <% } %>
+    
+        <ul>
+        <% lista.map(e => { %> 
+        <div class="card" style="width: 18rem;">
+            <img src="<%= e.thumbnail %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= e.title %></h5>
+              <p class="card-text"><%= e.price %></p>
+              <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        <% }); %>    
+        </ul>  
 
-    <ul>
-    <% lista.map(e => { %>
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><%= e.title %></h5>
-          <p class="card-text"><%= e.price %></p>
-          <a href="#" class="btn btn-primary">Comprar</a>
-        </div>
-      </div>
-    <% }); %>    
-    </ul>   
-
-    <h2 text-align="center"> INGRESE EL PRODUCTO</h2>
-    <form>
+    <!-- FORMULARIO PRODUCTOS -->
     <div class="container">
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Ingrese nombre del producto">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Price</label>
-            <input type="number" class="form-control" id="price" placeholder="$000">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Imagen</label>
-            <input type="text" class="form-control" id="thumbnail" placeholder="http//...">
-        </div>
-        <a href="#" class="btn btn-primary" type="submit"  value="Enviar">Enviar</a>
-    </div>
-    </form>
+        <div class="row">
+            <div class="col">
+        
+        <form action="guardar" method="post">
+            <legend>Ingrese el nuevo Producto</legend>
+            <div class="mb-3">
+                <label for="title">Titulo:</label><br>
+                <input id="title"  name="title"  type="text" class="form-control" placeholder="Nombre del producto" value= " <% if (typeof validaciones != 'undefined') { %><%= valores.title  %><%}%>" >
+            </div>
+            <div class="mb-3">
+                <label for="price">Precio:</label><br>
+                <input id="price"  name="price"  type="number" class="form-control" placeholder="Precio del producto"value=" <% if (typeof validaciones != 'undefined') { %><%= valores.price %><%}%>"  >
+            </div>
+            <div class="mb-3">
+                <label for="thumbnail">fotografia:</label><br> 
+                <input id="thumbnail"  name="thumbnail"  type="text" class="form-control" placeholder="Imagen del producto"value=" <% if (typeof validaciones != 'undefined') { %><%= valores.thumbnail  %><%}%>" >
+            </div>
+                <button type="submit" value="Enviar" class="btn btn-primary"> Enviar </button>
+            </div>
+        </form>   
 
-    <div style= "display: inline-block;">
-        <div>
-            <span><%= min %></span>
-            <span style="float:right;"><%= max %></span>
-        </div>
-        <div class="barra">
-            <div class="indicador" style="width: 50%">
-        </div>
+        <% if (typeof validaciones != 'undefined') { %>
+            <% validaciones.forEach((validacion) => { %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong><%= validacion.msg %></strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% }) %>
+        <% } %>
+            </div>
         </div>
     </div>
+ 
+    <script src="js/app.js"></script>
+    <script src="js/crud.js"></script>
 </body>
 </html>

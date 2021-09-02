@@ -1,124 +1,69 @@
+
 const express = require('express');
 const router = express.Router();
-const controller = require('./../controllers/index.controller');
-
-
-let productos = [
-  {
-    "id":0,
-    "title": "papa", 
-    "price": 90000, 
-    "thumbnail": "https://st.depositphotos.com/1784849/1417/i/600/depositphotos_14170591-stock-photo"
-  },
-  {
-    "id":1,
-    "title": "choclo", 
-    "price": 90000, 
-    "thumbnail": "https://st.depositphotos.com/1784849/1417/i/600/depositphotos_14170591-stock-photo"
-  }, 
-  {
-    "id":0,
-    "title": "papa", 
-    "price": 90000, 
-    "thumbnail": "https://st.depositphotos.com/1784849/1417/i/600/depositphotos_14170591-stock-photo"
-  },
-  {
-    "id":1,
-    "title": "choclo", 
-    "price": 90000, 
-    "thumbnail": "https://st.depositphotos.com/1784849/1417/i/600/depositphotos_14170591-stock-photo"
-  }
-
-];
-
-//Probando controller
-router.get('/controller', controller.index)
+const crud = require('./../controllers/crud')
 
 //CHECK
 router.get("/", (req, res) => {
         res.send("Esta funcionando la ruta de productos...");
       });
+ 
 
-//probando EJS
-router.get("/ejs", (req, res) =>{
-  res.render("index",
-  {   
-      lista: productos,
-      mensaje: "Hello ejs",
-      min: 5,
-      max: 20,
-      status: true,
+//PROBANDO archivo Crud showData
+router.get("/listar", crud.showData)
 
-  });
-})      
+//PROBANDO archivo Crud showForID
+router.get("/listar/:id", crud.showForID)
 
-//GET TODOS
-router.get("/listar", (req, res) => {
-    res.send(productos);
-  });
+//PROBANDO archivo Crud saveData
+router.post("/guardar", crud.saveData)
 
+//PROBANDO archivo Crud showForID
+router.get("/borrar/:id", crud.deleteId)
 
-//GET POR ID
-router.get("/listar/:id", (req, res) => {
-   
-    if(!isNaN(req.params.id)){
-        let id = parseInt(req.params.id,10);
-        if(id >= 0 && id <= productos.length-1){
-        const producto = productos.find(producto => producto.id === id);
-        res.send(producto);
-        }else{
-        res.send('Fuera de rango...')
-        }
-        }else
-        res.send('Esto no es un numero')
-});
-
-//GUARDAR PRODUCTO
-router.post("/guardar", (req, res) => {
-
-    const producto = req.body
-    const id = productos.length + 1
-    
-    const newProduct = {
-      id: id,
-      title: producto.title,
-      price: producto.price,
-      thumbnail: producto.thumbnail,
-    }
-
-    productos = [...productos, newProduct]
-    res.json(newProduct)
-});
-
-
-//BORRAR PRODUCTO
-router.delete('/borrar/:id', (req, res) => {
-
-
-    const id = parseInt(req.params.id,10);
-    productos = productos.filter(produ => produ.id !== id);
-    res.json(productos) 
-  })
-
-//ACTUALIZAR PRODUCTO
-router.put('/actualizar/:id', (req, res) => {
-
-    const id = parseInt(req.params.id,10);
-    const {title,price, thumbnail} = req.body
-
-    if (title && price && thumbnail) {
-        productos.forEach((producto, i) => {
-            if(producto.id === id) {
-                producto.title = title;
-                producto.price = price;
-                producto.thumbnail = thumbnail;
-            }
-        }) ;
-        res.json(productos);
-    }else{
-        res.status(500).json({error: 'Todos los campos son requeridos...'})
-    }
-  });
+//PROBANDO archivo Crud showForID
+router.get("/actualizar/:id", crud.upDateId)
 
 
 module.exports = router;
+
+// //En caso de volver a usar archivos
+// const fs = require('fs');
+// const data = JSON.parse(
+//   fs.readFileSync('./productos.json', (encoding = 'utf8')),
+// );
+
+
+/*
+DONDE DEBERIA PONER LOS ALERTS?? DE QUE MANERA?
+
+Express validator
+const {body, validationResult} = require('express-validator');
+
+
+router.post('/registrar',[
+  body('title', 'Ingrese el nombre del producto')
+      .exists()
+      .isLength({min:3}),
+  body('price', 'Ingrese un precio valido')
+      .exists()
+      .isNumeric({min:2}),
+  body('thumbnail', 'Ingrese una URL de imagen')
+      .exists(),
+], (req, res) => {
+
+  const error = validationResult(req)
+  if (!error.isEmpty()) {
+    console.log(req.body)
+    const valores = req.body
+    const validaciones = error.array()
+    res.render('index', {validaciones: validaciones, valores: valores})
+  }else{
+    crud.saveData()
+    res.send('Validación Exitosa LLEGO!')
+  }
+
+})
+
+
+*/
