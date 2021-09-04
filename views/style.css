@@ -1,5 +1,13 @@
+
+
 *{
     box-sizing: border-box;
+}
+
+body{
+    background: beige;
+    height: 100vh;
+
 }
 
 .barra{

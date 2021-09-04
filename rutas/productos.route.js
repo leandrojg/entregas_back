@@ -5,7 +5,7 @@ const crud = require('./../controllers/crud')
 
 //CHECK
 router.get("/", (req, res) => {
-        res.send("Esta funcionando la ruta de productos...");
+        res.send("Esta funcionando la ruta de productos papa...");
       });
  
 
