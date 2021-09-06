@@ -1,5 +1,7 @@
 let productos = [];
 
+exports.productos = productos;
+
 exports.saveData = (req, res, next) => {
   let { title, price, thumbnail } = req.body;
 
@@ -19,18 +21,16 @@ exports.saveData = (req, res, next) => {
   res.send(title + " " + price + " " + thumbnail);
 };
 
+
 exports.showData = (req, res, next) => {
-  res.render("index", {
-    lista: productos,
-    mensaje: "Mensaje desde showData crud!",
-    min: 3,
-    max: 20,
-    status: true,
-  });
+  console.log("🚀 ~ file: crud.js ~ line 39 ~ productos", productos)
+  res.send(productos);
 };
+
 
 exports.showForID = (req, res, next) => {
   if (!isNaN(req.params.id)) {
+  
     let id = parseInt(req.params.id, 10);
     if (id > 0 && id <= productos.length) {
       const producto = productos.find((producto) => producto.id === id);

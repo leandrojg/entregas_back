@@ -19,10 +19,10 @@ router.get("/listar/:id", crud.showForID)
 router.post("/guardar", crud.saveData)
 
 //PROBANDO archivo Crud showForID
-router.get("/borrar/:id", crud.deleteId)
+router.delete("/borrar/:id", crud.deleteId)
 
 //PROBANDO archivo Crud showForID
-router.get("/actualizar/:id", crud.upDateId)
+router.put("/actualizar/:id", crud.upDateId)
 
 
 module.exports = router;
