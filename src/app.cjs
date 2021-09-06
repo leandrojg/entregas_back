@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 });
 
 
-app.use(express.static(__dirname + "/public")); //indicamos la carpeta donde están los archivos estaticos
+// app.use(express.static(__dirname + "/public")); //indicamos la carpeta donde están los archivos estaticos
 
 //ROUTES
 const routers = require("./rutas/productos.route.cjs"); //Localizamos la ruta...
