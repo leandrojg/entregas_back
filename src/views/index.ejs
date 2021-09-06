@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./../partials/head.ejs');%>
+  </head>
+
+  <body>
+
+    <header><%- include('./../partials/header.ejs')%></header>
+
+    <main><%- include('./../partials/main.ejs')%></main>
+
+    <section><%- include('./../partials/formProducts.ejs')%></section>
+
+    <footer><%- include('./../partials/footer.ejs')%></footer>
+
+    <script src="/socket.io/socket.io.min.js"></script>
+    <script src="./../js/ui.js"></script>
+    <script src="./../js/sockets.js"></script>
+    <script src="./../js/main.js"></script>
+    <script src="./../controllers/crud.js"></script>
+    <script src="./../controllers/crud.js"></script>
+    <script src="./../rutas/productos.route.cjs"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

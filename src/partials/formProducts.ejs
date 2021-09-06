@@ -1,0 +1,58 @@
+    <!-- FORMULARIO PRODUCTOS -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+        
+        <form action="guardar" method="post">
+            <legend>Ingrese el nuevo Producto</legend>
+            <div class="mb-3">
+                <label for="title">Titulo:</label><br>
+                <input id="title"  name="title"  type="text" class="form-control" placeholder="Nombre del producto" value= " <% if (typeof validaciones != 'undefined') { %><%= valores.title  %><%}%>" >
+            </div>
+            <div class="mb-3">
+                <label for="price">Precio:</label><br>
+                <input id="price"  name="price"  type="number" class="form-control" placeholder="Precio del producto"value=" <% if (typeof validaciones != 'undefined') { %><%= valores.price %><%}%>"  >
+            </div>
+            <div class="mb-3">
+                <label for="thumbnail">fotografia:</label><br> 
+                <input id="thumbnail"  name="thumbnail"  type="text" class="form-control" placeholder="Imagen del producto"value=" <% if (typeof validaciones != 'undefined') { %><%= valores.thumbnail  %><%}%>" >
+            </div>
+                <button type="submit" value="Enviar" class="btn btn-primary"> Enviar </button>
+            </div>
+        </form>   
+
+        <% if (typeof validaciones != 'undefined') { %>
+            <% validaciones.forEach((validacion) => { %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong><%= validacion.msg %></strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% }) %>
+        <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORMULARIO MOSTRAR PRODUCTOS -->
+    <% if(status){ %>
+        
+        <h1><%= mensaje %></h1>
+        <% } else { %>
+        <h1> No existe el mensaje </h1> 
+        <% } %> 
+
+        
+     <div class= "d-flex flex-row flex-wrap justify-content-evenly"></div>
+        <ul>
+        <% lista.map(e => { %> 
+        <div class="card " style="width: 18rem;">
+            <img src="<%= e.thumbnail %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= e.title %></h5>
+              <p class="card-text"><%= e.price %></p>
+              <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        <% }); %>    
+        </ul>  
+    </div>

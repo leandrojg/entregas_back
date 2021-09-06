@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon js/app.js",
-    "start": "node js/app.js"
+    "dev": "nodemon src/app.cjs --exec babel-node --ignore src/public",
+    "start": "node src/app.cjs"
   },
   "keywords": [],
   "author": "",

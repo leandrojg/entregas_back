@@ -1,0 +1,48 @@
+
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background: rgb(201, 201, 156);
+    height: 100vh;
+
+}
+
+.barra{
+    width: 20em;
+    height: 1em;
+    border: 1px solid
+}
+
+.indicador{
+    width: 0;
+    height: 100%;
+    background-color: red;
+}
+
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    top: -130px;
+    margin: 0;
+    width: 99%;
+    background-color: transparent;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+    background-color: white;
+    padding: 30px 30px;
+    width: 20vw;
+}
+
+.footer-info a {
+    color: #454a46;
+}

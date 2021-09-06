@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const crud = require('./../controllers/crud')
+const crud = require('../controllers/crud')
 
 //CHECK
 router.get("/", (req, res) => {

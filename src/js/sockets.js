@@ -9,7 +9,7 @@ const socket = io();
  */
 
 const saveNote = (title, description) => {
-
+    console.log("llego")
     //para guardar una nueva nota
     socket.emit('client:newnote', { 
         title: title,
@@ -47,4 +47,4 @@ const saveNote = (title, description) => {
         description.value = note.description;
 
         savedId = note.id;
-    })
+    });

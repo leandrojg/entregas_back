@@ -27,8 +27,8 @@ exports.showData = (req, res, next) => {
   res.render("index",
     {   
         lista: productos,
-        mensaje: "Hello ejs",
-        min: 5,
+        mensaje: "Mensaje desde showData crud!",
+        min: 3,
         max: 20,
         status: true
 
